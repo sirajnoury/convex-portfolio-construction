@@ -78,19 +78,28 @@ def efficient_frontier(mu, cov, n_points=30, max_weight=0.10):
             continue
     return pd.DataFrame(rows)
 
-def plot_efficient_frontier(frontier, save_path=None, title="Efficient Frontier"):
+def plot_efficient_frontier(frontiers, save_path=None, title="Efficient Frontier"):
     """
-    Plots the portoflio's efficient frontier.
+    Plot efficient frontiers, where frontiers are either DataFrame 
+    or a dictionnary of DataFrames.
     """
     import matplotlib.pyplot as plt
+
+    if isinstance(frontiers, pd.DataFrame):
+        frontiers = {"frontier": frontiers}
+
     fig, ax = plt.subplots(figsize=(9, 6))
-    ax.plot(frontier["volatility"], frontier["achieved_return"], "o-", linewidth=2, markersize=6)
+    for label, fr in frontiers.items():
+        ax.plot(fr["volatility"], fr["achieved_return"], "o-", linewidth=2, markersize=5, label=label)
+
     ax.set_xlabel("Annualized volatility")
     ax.set_ylabel("Annualized expected return")
     ax.set_title(title)
     ax.grid(True, alpha=0.3)
     ax.xaxis.set_major_formatter(plt.matplotlib.ticker.PercentFormatter(1.0))
     ax.yaxis.set_major_formatter(plt.matplotlib.ticker.PercentFormatter(1.0))
+    if len(frontiers) > 1:
+        ax.legend()
     plt.tight_layout()
     if save_path:
         plt.savefig(save_path, dpi=150, bbox_inches="tight")
