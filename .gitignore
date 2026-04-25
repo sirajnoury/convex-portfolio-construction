@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Data — cache locally, never commit
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Figures are regenerable; commit final ones manually if you want
+figures/*
+!figures/.gitkeep
+
+# macOS
+.DS_Store
+
+# VS Code workspace settings (personal)
+.vscode/
