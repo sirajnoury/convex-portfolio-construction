@@ -37,7 +37,7 @@ $$\min_{w, \alpha, u} \; \alpha + \frac{1}{0.05 \cdot S} \sum_{s=1}^{S} u_s \qua
 | Min-variance (Ledoit-Wolf) | 11.49% | 11.90% | 0.97 | -19.21% | 7.38% | 5.76% |
 | Min-CVaR (95%) | 11.39% | 11.90% | 0.96 | -21.75% | 7.35% | 26.40% |
 
-The optimizers do exactly what they're designed to do — cut volatility and drawdowns by ~30% versus equal-weight. They just don't deliver enough return to compensate. Equal-weight wins because diversification across 30 names is itself a powerful (and parameter-free) form of risk control.
+The optimizers cut volatility and drawdowns by ~30% versus equal-weight. However, they just don't deliver enough return to compensate. Equal-weight wins because diversification across 30 names is itself already a powerful form of risk control.
 
 ## Why min-CVaR underperforms
 
@@ -49,7 +49,7 @@ Min-CVaR's bootstrap scenarios change every month, so the optimizer keeps chasin
 
 ![2008 crisis allocations](figures/fig04_crisis_2008_allocations.png)
 
-Both optimizers pile into the same defensive top 5 (JNJ, KO, PG, WMT, MCD) at the 10% cap during 2008. The differences show up in the rest of the book. During COVID (Feb–Apr 2020), min-CVaR was the **only** strategy that finished positive (+2.75%), suggesting bootstrap scenarios picked up the early COVID signal faster than rolling covariance did.
+Both optimizers fall back onto the same defensive top 5 (JNJ, KO, PG, WMT, MCD) at the 10% cap during 2008. The differences show up in the rest of the times. During COVID (Feb–Apr 2020), min-CVaR was the only strategy that finished positive (+2.75%), suggesting bootstrap scenarios picked up the early COVID signal faster than rolling covariance did.
 
 ## β-sensitivity check
 
